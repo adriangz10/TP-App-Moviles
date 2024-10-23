@@ -1,0 +1,32 @@
+<ion-header [translucent]="true">
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="8" size-lg="6">
+        <div class="container-form">
+          <div class="head-container-form">
+            <h1>Welcome!</h1>
+            <p>Sign in to continue</p>
+          </div>
+
+          <form class="form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <ion-input class="form-input" label="Email" placeholder="correo@gmail.com" 
+            type="email" formControlName="email" fill="outline"></ion-input>
+
+            <ion-input class="form-input" label="Password" type="password" formControlName="password" fill="outline">
+              <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+            </ion-input>
+
+            <ion-button class="login-button" [disabled]="!loginForm.valid" size="large" type="submit">Log in</ion-button>
+
+            <p>Forgot password?</p>
+
+            <ion-button class="signup-button" size="large" fill="outline" [routerLink]="['/signup']">Sign up</ion-button>
+          </form>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

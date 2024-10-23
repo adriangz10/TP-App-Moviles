@@ -1,0 +1,61 @@
+<ion-header class="header" [translucent]="true">
+  <div class="container-button-logout">
+    <ion-button color="light" (click)="logOut()">
+      <ion-icon name="log-out"></ion-icon>
+    </ion-button>
+  </div>
+  <div class="container-search">
+    <ion-searchbar show-cancel-button="focus" placeholder="Search"></ion-searchbar>
+  </div>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <div class="container-home-text">
+    <h1 class="text-home">Home</h1>
+  </div>
+
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button [routerLink]="['/home']">
+        <ion-icon name="home"></ion-icon>
+        Home
+      </ion-tab-button>
+      <ion-tab-button [routerLink]="['/profile']">
+        <ion-icon name="person"></ion-icon>
+        Profile
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+
+  <div class="container-shipping">
+    <div class="map">
+      <ion-button class="new-shipping" color="light" (click)="irEnvios()">New shipping</ion-button>
+    </div>
+  </div>
+
+  <div class="container-funtions">
+    <div class="container-funtions-text">
+      <h1 class="text-funtion">Funtions</h1>
+    </div>
+    <div class="funtions">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-button color="light" class="first-funtion" (click)="openCamara()"></ion-button>
+            <h6>QR</h6>
+          </ion-col>
+          <ion-col>
+            <div class="second-funtion"></div>
+            <h6>Monitoring</h6>
+          </ion-col>
+          <ion-col>
+            <div class="third-funtion"></div>
+            <h6>Coupons</h6>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </div>
+
+</ion-content>

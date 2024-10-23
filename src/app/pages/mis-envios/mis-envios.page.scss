@@ -1,0 +1,47 @@
+.envios-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .envio-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .envio-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+  
+  .envio-item ion-icon {
+    margin-right: 10px;
+    font-size: 1.2rem;
+  }
+  
+  .envio-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  ion-toolbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  ion-title {
+    flex-grow: 1;
+  }
+  
+  
+  
+  
+  
+  

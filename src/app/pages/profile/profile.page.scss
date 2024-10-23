@@ -1,0 +1,62 @@
+ion-content {
+    --background: rgb(60, 84, 220);
+}
+
+.container-form {
+    height: 55vh;
+    width: 100%;
+    max-width: 500px;
+    background: white;
+    right: 0;
+    left: 0;
+    bottom: 6%;
+    position: absolute;
+    border-top-right-radius: 46px;
+    border-top-left-radius: 46px;
+}
+
+.container-photo {
+    width: 100%;
+    position: absolute;
+}
+
+.container-img {
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    margin-top: 15vh;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50%; /* Asegura que sea un círculo */
+    background-size: cover; /* Ajustar tamaño de imagen de fondo */
+    overflow: hidden; /* Ocultar cualquier parte de la imagen que sobresalga */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen cubra todo el contenedor */
+    border-radius: 50%; /* Hacer que la imagen también sea redonda */
+}
+
+.form {
+    text-align: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 60%;
+    padding: 10%;
+    padding-top: 0;
+    transform: translateY(-50%);
+}
+
+.form-input {
+    margin-bottom: 20px;
+}
+
+.container-tittle {
+    margin: auto;
+    text-align: center;
+}

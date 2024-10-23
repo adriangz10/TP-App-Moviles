@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="irEnvios()">
+        <ion-icon name="arrow-back" size="large"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Lista de Envíos</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="envios-list">
+    <div class="envio-card" *ngFor="let envio of envios">
+      <div class="envio-item">
+        <ion-icon name="cube" slot="start"></ion-icon>
+        <span>Dirección de Origen: {{ envio.direccionOrigen }}</span>
+      </div>
+      <div class="envio-item">
+        <ion-icon name="location" slot="start"></ion-icon>
+        <span>Dirección de Destino: {{ envio.direccionDestino }}</span>
+      </div>
+      <div class="envio-item">
+        <ion-icon name="document-text" slot="start"></ion-icon>
+        <span>Descripcion: {{ envio.descripcionPaquete }}</span>
+      </div>
+      <div class="envio-item">
+        <ion-icon name="flash" slot="start"></ion-icon>
+        <span>Estado: {{ envio.estado }}</span>
+      </div>
+      <div class="envio-item" *ngIf="envio.photoURL">
+        <img [src]="envio.photoURL" alt="Foto del Paquete" style="max-width: 100px;" />
+      </div>
+      <div class="envio-actions">
+        <ion-button fill="clear" color="danger" >
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+        <ion-button fill="clear" color="primary" >
+          <ion-icon name="create"></ion-icon>
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

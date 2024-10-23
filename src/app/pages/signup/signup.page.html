@@ -1,0 +1,25 @@
+<ion-header [translucent]="true">
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  
+  <div class="container-form">
+    <div class="head-container-form">
+      <h1>Create account</h1>
+    </div>
+
+    <form class="form" [formGroup]="singupForm" (ngSubmit)="onSubmit()">
+
+      <ion-input class="form-input" label="Email" placeholder="correo@gmail.com" 
+      type="email" formControlName="email" fill="outline" labelPlacement="stacked"></ion-input>
+      
+      <ion-input class="form-input" label="Password" type="password" formControlName="password" 
+      fill="outline" labelPlacement="stacked">
+      <ion-input-password-toggle slot="end"></ion-input-password-toggle></ion-input>
+
+      <ion-button class="login-button" [disabled]="!singupForm.valid" size="large" type="submit">Log in</ion-button>
+
+    </form>
+
+  </div>
+</ion-content>

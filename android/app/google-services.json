@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "376126228693",
+    "project_id": "envios-expres",
+    "storage_bucket": "envios-expres.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:376126228693:android:14027b6ae9166079317a5c",
+        "android_client_info": {
+          "package_name": "envios.expres"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDIVuFFfcPjPfyk8WVzDK3mpN7cBzI1S9k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

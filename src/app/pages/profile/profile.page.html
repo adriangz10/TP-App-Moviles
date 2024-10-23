@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button [routerLink]="['/home']">
+        <ion-icon name="home"></ion-icon>
+        Home
+      </ion-tab-button>
+      <ion-tab-button [routerLink]="['/profile']">
+        <ion-icon name="person" ></ion-icon>
+        Profile
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+
+  <div class="container-photo">
+    <div (click)="takePicture()" class="container-img">
+      <img *ngIf="profileImage" [src]="profileImage" alt="Profile Image" style="max-width: 100%; border-radius: 10px;">
+    </div>
+  </div>
+
+  <div class="container-form">
+
+    <div class="container-tittle">
+      <h1>Account Information</h1>
+    </div>
+
+    <form class="form" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+      <ion-input class="form-input" label="Full name" type="text" 
+      formControlName="name" fill="outline" labelPlacement="stacked"></ion-input>
+
+      <ion-input class="form-input" label="Phone number" placeholder="Enter phone number" 
+      type="number" formControlName="phoneNumber" fill="outline" labelPlacement="stacked"></ion-input>
+
+      <!-- <ion-input class="form-input" label="New password" placeholder="Enter a new password" 
+      type="password" formControlName="currentPassword" fill="outline" labelPlacement="stacked"></ion-input> -->
+
+      <ion-input class="form-input" label="Current password" placeholder="Enter current password" 
+      type="password" formControlName="currentPassword" fill="outline" labelPlacement="stacked"></ion-input>
+
+      <ion-button class="login-button" [disabled]="!profileForm.valid" size="large" type="submit">Update</ion-button>
+    
+    </form>
+  </div>
+
+</ion-content>

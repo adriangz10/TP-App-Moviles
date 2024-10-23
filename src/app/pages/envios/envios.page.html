@@ -1,0 +1,56 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Crear Envío</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button [routerLink]="['/home']">
+        <ion-icon name="home"></ion-icon>
+        Home
+      </ion-tab-button>
+      <ion-tab-button [routerLink]="['/mis-envios']">
+        <ion-icon name="cube"></ion-icon>
+        Mis Envios
+      </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>
+
+  <div class="container-form">
+    <div class="container-title">
+      <h1>Información del Envío</h1>
+    </div>
+
+    <form class="form" [formGroup]="envioForm" (ngSubmit)="onSubmit()">
+      <ion-input class="form-input" label="Dirección de Origen" type="text" formControlName="direccionOrigen"
+        fill="outline" labelPlacement="stacked"></ion-input>
+
+      <ion-input class="form-input" label="Dirección de Destino" type="text" formControlName="direccionDestino"
+        fill="outline" labelPlacement="stacked"></ion-input>
+
+      <ion-textarea class="form-input" label="Descripción del Paquete" formControlName="descripcionPaquete"
+        fill="outline" labelPlacement="stacked"></ion-textarea>
+
+      <ion-select class="form-input" label="Estado" formControlName="estado" fill="outline"
+        labelPlacement="stacked">
+        <ion-select-option value="pendiente">Pendiente</ion-select-option>
+        <ion-select-option value="camino">En camino</ion-select-option>
+        <ion-select-option value="entregado">Entegrado</ion-select-option>
+      </ion-select>
+
+      <ion-item class="form-input">
+        <label class="custom-file-upload">
+          <input type="file" (change)="onFileSelected($event)" />
+          <ion-icon name="camera"></ion-icon>
+          <span class="file-label">Foto del Paquete</span>
+        </label>
+      </ion-item>
+
+      <ion-button class="submit-button" [disabled]="!envioForm.valid" size="large" type="submit">Crear
+        Envío</ion-button>
+    </form>
+  </div>
+</ion-content>

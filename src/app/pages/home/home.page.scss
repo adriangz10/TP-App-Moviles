@@ -1,0 +1,128 @@
+.header{
+  background-color: rgb(60, 84, 220);
+}
+
+.container-search{
+  margin: auto;
+  margin-top: 5vh;
+}
+
+.container-home-text{
+  width: 40%;
+  background-color: rgb(60, 84, 220);
+}
+
+.text-home{
+  color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+
+.container-shipping{
+  width: 100%;
+  height: 30vh;
+}
+
+.map{
+  position: relative;
+  margin: auto;
+  width: 90%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.101);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("/assets/images/mapa-ubicacion.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-top-left-radius: 10%;
+  border-top-right-radius: 10%;
+  border-bottom-left-radius: 10%;
+  box-shadow: 1px 3px 10px rgb(0, 0, 0);
+}
+
+.new-shipping{
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.container-funtions{
+  margin-top: 8vh;
+  width: 100%;
+  height: 35vh;
+
+  max-width: 500px;
+  background: rgb(60, 84, 220);
+  right: 0;
+  left: 0;
+  bottom: 6%;
+  position: absolute;
+  border-top-right-radius: 46px;
+  border-top-left-radius: 46px;
+}
+
+.container-funtions-text{
+  width: 40%;
+}
+
+.text-funtion{
+  color:white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+
+
+.funtions{
+  position: relative;
+  margin: auto;
+  margin-top: 30px;
+  width: 90%;
+  height: 50%;
+}
+
+.first-funtion, .second-funtion, .third-funtion{
+  width: 100%;
+  height: 80px;
+  background-color:rgba(255, 255, 255, 0.95);
+  box-shadow: 1px 3px 10px rgb(0, 0, 0);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-left-radius: 20%;
+  border-top-right-radius: 20%;
+  border-bottom-left-radius: 20%;
+}
+
+h6{
+  margin-top: 7px;
+  text-align: center;
+  color:white;
+}
+
+.first-funtion{
+  background-image: url("/assets/images/escanear-qr.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.second-funtion{
+  background-image: url("/assets/images/monitoreo.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.third-funtion{
+  background-image: url("/assets/images/cupones.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.container-button-logout{
+  position: absolute;
+  right: 0;
+}
