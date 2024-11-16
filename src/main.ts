@@ -8,7 +8,12 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { firebaseConfig } from './environments/firebase-config';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { Keyboard } from '@capacitor/keyboard';  // Importa el plugin del teclado
 
+// Configura el comportamiento del teclado
+Keyboard.getResizeMode()  // Esto evita que el teclado mueva la vista
+
+// Inicializa la aplicación
 bootstrapApplication(AppComponent, {
   providers: [
     provideFirebaseApp(() => initializeApp(firebaseConfig)),

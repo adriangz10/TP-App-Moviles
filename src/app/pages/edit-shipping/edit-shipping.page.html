@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Editar Envío</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="updateShipping()">
+    <ion-item>
+      <ion-label position="stacked">Dirección de Origen</ion-label>
+      <ion-input [(ngModel)]="envioData.direccionOrigen" name="direccionOrigen" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Dirección de Destino</ion-label>
+      <ion-input [(ngModel)]="envioData.direccionDestino" name="direccionDestino" required></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Descripción del Paquete</ion-label>
+      <ion-textarea [(ngModel)]="envioData.descripcionPaquete" name="descripcionPaquete" required></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Estado</ion-label>
+      <ion-select [(ngModel)]="envioData.estado" name="estado" required>
+      </ion-select>
+    </ion-item>
+
+    <ion-button expand="full" type="submit">Guardar Cambios</ion-button>
+  </form>
+</ion-content>

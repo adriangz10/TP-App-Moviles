@@ -20,6 +20,7 @@ export class ProfilePage implements OnInit {
   profileForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required]),
     phoneNumber: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     currentPassword: new FormControl('', [Validators.required]),
   });
   currentUser: any = null;
@@ -36,14 +37,26 @@ export class ProfilePage implements OnInit {
     console.log('aa', this.currentUser);
     this.profileForm.patchValue({ name: this.currentUser.UserName });
     this.profileForm.patchValue({ phoneNumber: this.currentUser.PhoneNumber });
+    this.profileForm.patchValue({ email: this.currentUser.Email})
     this.profileImage = this.currentUser.ProfileImageUrl; // Mostrar imagen de perfil si existe
   }
 
   async onSubmit() {
     const values = this.profileForm.value;
+    // También puedes actualizar otros datos, si es necesario
     await this.authService.updateName({ name: values.name });
     await this.authService.uploadPhoneNumber({ phoneNumber: values.phoneNumber });
+  
+    try {
+      // Actualizar el email solo en Firebase Auth, pasando newEmail y currentPassword
+      await this.authService.updateEmail({ newEmail: values.email });
+      console.log("Email actualizado correctamente en Firebase Auth.");
+    } catch (error) {
+      console.error("Error al actualizar el email en Firebase Auth:", error);
+    }
+  
   }
+  
 
   async takePicture() {
     if (!this.actionSheetController) return;

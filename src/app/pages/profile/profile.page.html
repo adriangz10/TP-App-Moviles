@@ -10,7 +10,7 @@
         Home
       </ion-tab-button>
       <ion-tab-button [routerLink]="['/profile']">
-        <ion-icon name="person" ></ion-icon>
+        <ion-icon name="person"></ion-icon>
         Profile
       </ion-tab-button>
     </ion-tab-bar>
@@ -30,20 +30,20 @@
 
     <form class="form" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
 
-      <ion-input class="form-input" label="Full name" type="text" 
-      formControlName="name" fill="outline" labelPlacement="stacked"></ion-input>
+      <ion-input class="form-input" label="Full name" type="text" formControlName="name" fill="outline"
+        labelPlacement="stacked"></ion-input>
 
-      <ion-input class="form-input" label="Phone number" placeholder="Enter phone number" 
-      type="number" formControlName="phoneNumber" fill="outline" labelPlacement="stacked"></ion-input>
+      <ion-input class="form-input" label="Phone number" placeholder="Enter phone number" type="number"
+        formControlName="phoneNumber" fill="outline" labelPlacement="stacked"></ion-input>
 
-      <!-- <ion-input class="form-input" label="New password" placeholder="Enter a new password" 
-      type="password" formControlName="currentPassword" fill="outline" labelPlacement="stacked"></ion-input> -->
+      <ion-input class="form-input" label="Email" placeholder="Enter new email" type="email" formControlName="email"
+        fill="outline" labelPlacement="stacked"></ion-input>
 
-      <ion-input class="form-input" label="Current password" placeholder="Enter current password" 
-      type="password" formControlName="currentPassword" fill="outline" labelPlacement="stacked"></ion-input>
+      <ion-input class="form-input" label="Current password" placeholder="Enter current password" type="password"
+        formControlName="currentPassword" fill="outline" labelPlacement="stacked"></ion-input>
 
       <ion-button class="login-button" [disabled]="!profileForm.valid" size="large" type="submit">Update</ion-button>
-    
+
     </form>
   </div>
 

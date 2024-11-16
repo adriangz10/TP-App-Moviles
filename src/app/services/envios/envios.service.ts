@@ -4,6 +4,9 @@ import {
   collection,
   addDoc,
   getDocs,
+  deleteDoc,
+  updateDoc,
+  doc
 } from '@angular/fire/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { FirebaseAuthentication } from '@capacitor-firebase/authentication';
@@ -72,5 +75,27 @@ export class EnvioService {
       throw new Error('No se encontró un usuario autenticado.');
     }
     return user.uid;
+  }
+
+  async deleteShipping(envioId: string): Promise<void> {
+    try {
+      const envioRef = doc(this.firestore, `envios/${envioId}`);
+      await deleteDoc(envioRef);
+      console.log(`Envío con ID ${envioId} eliminado con éxito.`);
+    } catch (error) {
+      console.error('Error al eliminar el envío:', error);
+      throw error;
+    }
+  }
+
+  async updateShipping(envioId: string, updatedData: any): Promise<void> {
+    try {
+      const envioRef = doc(this.firestore, `envios/${envioId}`);
+      await updateDoc(envioRef, updatedData);
+      console.log(`Envío con ID ${envioId} actualizado con éxito.`);
+    } catch (error) {
+      console.error('Error al actualizar el envío:', error);
+      throw error;
+    }
   }
 }

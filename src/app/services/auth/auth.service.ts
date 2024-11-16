@@ -12,6 +12,11 @@ export class AuthService {
   constructor(private firestore: Firestore) {
   }
 
+  getCurrentUser = async () => {
+    const result = await FirebaseAuthentication.getCurrentUser();
+    return result.user;
+  };
+
   async registerWithEmail(params: { email: string, password: string }): Promise<any> {
     try {
       const result = await FirebaseAuthentication.createUserWithEmailAndPassword({
@@ -129,4 +134,62 @@ export class AuthService {
       throw error;
     }
   }
+
+  async reauthenticateUser(email: string, password: string): Promise<void> {
+    try {
+      await FirebaseAuthentication.signInWithEmailAndPassword({
+        email,
+        password,
+      });
+      console.log("Usuario re-autenticado.");
+    } catch (error) {
+      console.error("Error en la re-autenticación:", error);
+      throw error;
+    }
+  }
+
+  async updateEmail(params: { newEmail: string }): Promise<void> {
+    try {
+      // Verificar que el nuevo correo electrónico no sea vacío
+      if (!params.newEmail || params.newEmail.trim() === '') {
+        throw new Error('El nuevo correo electrónico es requerido y no puede estar vacío.');
+      }
+  
+      // Obtener el usuario actual desde Firebase
+      const currentUser = await this.getCurrentUser();
+  
+      if (!currentUser) { throw new Error("No se encontró un usuario autenticado."); }
+  
+      // Intentar actualizar el correo electrónico directamente
+      await FirebaseAuthentication.updateEmail({
+        newEmail: params.newEmail
+      });
+  
+      console.log("Email actualizado correctamente en Firebase Authentication.");
+      
+    } catch (error) {
+      console.error("Error al actualizar el email en Firebase Authentication:", error);
+      throw error; 
+    }
+  }
+
+  async updatePassword(newPassword: string): Promise<void> {
+    try {
+      const { user } = await FirebaseAuthentication.getCurrentUser();
+      if (!user) {
+        throw new Error("No se encontró un usuario autenticado.");
+      }
+  
+      // Actualiza la contraseña en Firebase Authentication
+      await FirebaseAuthentication.updatePassword({
+        newPassword: newPassword,
+      });
+  
+      console.log("Contraseña actualizada correctamente.");
+    } catch (error) {
+      console.error("Error al actualizar la contraseña:", error);
+      throw error;
+    }
+  }
+  
 }

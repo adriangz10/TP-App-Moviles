@@ -5,9 +5,12 @@ const config: CapacitorConfig = {
   appName: 'envios-expres',
   webDir: 'www',
   plugins: {
-    "FirebaseAuthentication": {
-      "skipNativeAuth": false,
-      "providers": []
+    FirebaseAuthentication: {
+      skipNativeAuth: false,
+      providers: []
+    },
+    PushNotifications: {
+      presentationOptions: ["badge", "sound", "alert"]
     }
   }
 };
