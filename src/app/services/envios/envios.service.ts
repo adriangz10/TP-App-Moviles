@@ -6,9 +6,15 @@ import {
   getDocs,
   deleteDoc,
   updateDoc,
-  doc
+  doc,
 } from '@angular/fire/firestore';
-import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import {
+  getStorage,
+  ref,
+  uploadBytes,
+  getDownloadURL,
+  deleteObject,
+} from 'firebase/storage';
 import { FirebaseAuthentication } from '@capacitor-firebase/authentication';
 
 @Injectable({
@@ -62,9 +68,12 @@ export class EnvioService {
         envioId: '',
       };
 
-      const docRef = await addDoc(collection(this.firestore, 'envios'), envioData);
+      const docRef = await addDoc(
+        collection(this.firestore, 'envios'),
+        envioData
+      );
       await updateDoc(docRef, {
-        envioId: docRef.id,  // Aquí se guarda el envioId en el documento
+        envioId: docRef.id, // Aquí se guarda el envioId en el documento
       });
       console.log('Envío creado exitosamente!');
     } catch (error) {
@@ -99,6 +108,48 @@ export class EnvioService {
       console.log(`Envío con ID ${envioId} actualizado con éxito.`);
     } catch (error) {
       console.error('Error al actualizar el envío:', error);
+      throw error;
+    }
+  }
+
+  // Convierte un Data URL a Blob
+  private dataUrlToBlob(dataUrl: string): Blob {
+    const [metadata, base64Data] = dataUrl.split(',');
+    const contentType = metadata.match(/:(.*?);/)?.[1] || '';
+    const binary = atob(base64Data);
+    const array = [];
+    for (let i = 0; i < binary.length; i++) {
+      array.push(binary.charCodeAt(i));
+    }
+    return new Blob([new Uint8Array(array)], { type: contentType });
+  }
+
+  // Método para actualizar la imagen
+  async actualizarImagen(dataUrl: string, filePath?: string): Promise<string> {
+    try {
+      const storage = getStorage();
+
+      // Si se proporciona un filePath anterior, elimina la imagen existente
+      if (filePath) {
+        const oldImageRef = ref(storage, filePath);
+        await deleteObject(oldImageRef).catch((error) => {
+          console.warn('No se pudo eliminar la imagen anterior:', error);
+        });
+      }
+
+      // Genera un nuevo nombre único para la imagen
+      const newFilePath = `packages/${Date.now()}.jpg`;
+      const storageRef = ref(storage, newFilePath);
+
+      // Convierte el Data URL a Blob y sube la nueva imagen
+      const photoBlob = this.dataUrlToBlob(dataUrl);
+      await uploadBytes(storageRef, photoBlob);
+
+      // Obtiene y devuelve la URL pública
+      const photoURL = await getDownloadURL(storageRef);
+      return photoURL;
+    } catch (error) {
+      console.error('Error al actualizar la imagen:', error);
       throw error;
     }
   }

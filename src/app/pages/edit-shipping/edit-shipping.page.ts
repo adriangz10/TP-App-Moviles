@@ -16,8 +16,6 @@ import {
   IonButton,
   IonInput,
   IonTextarea,
-  IonItem,
-  IonIcon,
 } from '@ionic/angular/standalone';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EnvioService } from 'src/app/services/envios/envios.service';
@@ -151,12 +149,16 @@ export class EditShippingPage implements OnInit {
         source: source,
         quality: 100,
       });
-
+  
+      const photoURL = await this.shippingService.actualizarImagen(image.dataUrl);
+  
       this.envioForm.patchValue({
-        photoURL: image.dataUrl,
+        photoURL: photoURL,
       });
+  
+      console.log('Imagen subida con éxito:', photoURL);
     } catch (error) {
-      console.error('Error al capturar la imagen:', error);
+      console.error('Error al capturar/subir la imagen:', error);
     }
   }
 }
