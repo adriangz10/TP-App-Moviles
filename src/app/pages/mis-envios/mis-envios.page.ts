@@ -6,13 +6,9 @@ import {
   IonHeader,
   IonTitle,
   IonToolbar,
-  IonRow,
-  IonCol,
-  IonList,
   IonIcon,
   IonButton,
-  IonButtons,
-} from '@ionic/angular/standalone';
+  IonButtons, IonItem, IonLabel, IonSpinner } from '@ionic/angular/standalone';
 import { EnvioService } from 'src/app/services/envios/envios.service';
 import {
   arrowBack,
@@ -25,31 +21,30 @@ import {
 } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { Router } from '@angular/router';
+import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-mis-envios',
   templateUrl: './mis-envios.page.html',
   styleUrls: ['./mis-envios.page.scss'],
   standalone: true,
-  imports: [
+  imports: [ 
     IonButtons,
     IonButton,
     IonIcon,
-    IonCol,
     IonContent,
     IonHeader,
     IonTitle,
     IonToolbar,
     CommonModule,
     FormsModule,
-    IonRow,
-    IonList,
   ],
 })
 export class MisEnviosPage implements OnInit {
   envios: any[] = [];
+  envioId: string | null = null;
 
-  constructor(private envioService: EnvioService, private router: Router) {
+  constructor(private envioService: EnvioService, private router: Router, private alertController: AlertController, private toastController: ToastController) {
     addIcons({ arrowBack, cube, location, documentText, flash, trash, create });
   }
 
@@ -59,6 +54,10 @@ export class MisEnviosPage implements OnInit {
 
   irEnvios() {
     this.router.navigate(['/envios'], { replaceUrl: true });
+  }
+
+  irEditEnvios(id: string): void {
+    this.router.navigate([`/edit-shipping/${id}`], { replaceUrl: true });
   }
 
   async obtenerEnvios(): Promise<void> {
@@ -72,5 +71,42 @@ export class MisEnviosPage implements OnInit {
     } catch (error) {
       console.error('Error al obtener los envíos:', error);
     }
+  }
+
+  async onDeleteShipping() {
+    const alert = await this.alertController.create({
+      header: 'Confirmar eliminación',
+      message: '¿Estás seguro de que deseas eliminar este envío?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+        },
+        {
+          text: 'Eliminar',
+          handler: async () => {
+            if (this.envioId) {
+              try {
+                await this.envioService.deleteShipping(this.envioId);
+                this.showToast('Envío eliminado con éxito.');
+              } catch (error) {
+                this.showToast('Error al eliminar el envío.');
+              }
+            }
+          },
+        },
+      ],
+    });
+
+    await alert.present();
+  }
+
+  async showToast(message: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 3000,
+      position: 'top',
+    });
+    await toast.present();
   }
 }

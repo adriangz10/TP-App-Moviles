@@ -33,10 +33,10 @@
         <img [src]="envio.photoURL" alt="Foto del Paquete" style="max-width: 100px;" />
       </div>
       <div class="envio-actions">
-        <ion-button fill="clear" color="danger" >
+        <ion-button (click)="onDeleteShipping()" fill="clear" color="danger" >
           <ion-icon name="trash"></ion-icon>
         </ion-button>
-        <ion-button fill="clear" color="primary" >
+        <ion-button (click)="irEditEnvios(envio.envioId)" fill="clear" color="primary" >
           <ion-icon name="create"></ion-icon>
         </ion-button>
       </div>

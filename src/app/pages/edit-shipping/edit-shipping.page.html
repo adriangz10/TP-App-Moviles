@@ -5,28 +5,31 @@
 </ion-header>
 
 <ion-content>
-  <form (ngSubmit)="updateShipping()">
-    <ion-item>
-      <ion-label position="stacked">Dirección de Origen</ion-label>
-      <ion-input [(ngModel)]="envioData.direccionOrigen" name="direccionOrigen" required></ion-input>
-    </ion-item>
+  <div class="container-form">
+    <div class="container-title">
+      <h1>Editar Envío</h1>
+    </div>
 
-    <ion-item>
-      <ion-label position="stacked">Dirección de Destino</ion-label>
-      <ion-input [(ngModel)]="envioData.direccionDestino" name="direccionDestino" required></ion-input>
-    </ion-item>
+    <form class="form" [formGroup]="envioForm" (ngSubmit)="updateShipping()">
+      <ion-input class="form-input" label="Dirección de Origen" type="text" formControlName="direccionOrigen"
+        fill="outline" labelPlacement="stacked"></ion-input>
 
-    <ion-item>
-      <ion-label position="stacked">Descripción del Paquete</ion-label>
-      <ion-textarea [(ngModel)]="envioData.descripcionPaquete" name="descripcionPaquete" required></ion-textarea>
-    </ion-item>
+      <ion-input class="form-input" label="Dirección de Destino" type="text" formControlName="direccionDestino"
+        fill="outline" labelPlacement="stacked"></ion-input>
 
-    <ion-item>
-      <ion-label position="stacked">Estado</ion-label>
-      <ion-select [(ngModel)]="envioData.estado" name="estado" required>
-      </ion-select>
-    </ion-item>
+      <ion-textarea class="form-input" label="Descripción del Paquete" formControlName="descripcionPaquete"
+        fill="outline" labelPlacement="stacked"></ion-textarea>
 
-    <ion-button expand="full" type="submit">Guardar Cambios</ion-button>
-  </form>
+      <div class="image-container" *ngIf="envioForm.get('photoURL')?.value" (click)="openImagePicker()">
+        <img
+          [src]="envioForm.get('photoURL')?.value"
+          alt="Imagen del paquete"
+        />
+      </div>
+
+      <ion-button class="submit-button" [disabled]="!envioForm.valid" size="large" type="submit">
+        Guardar Cambios
+      </ion-button>
+    </form>
+  </div>
 </ion-content>

@@ -36,4 +36,8 @@ export const routes: Routes = [
     path: 'mis-envios',
     loadComponent: () => import('./pages/mis-envios/mis-envios.page').then( m => m.MisEnviosPage)
   },
+  {
+    path: 'edit-shipping/:id',
+    loadComponent: () => import('./pages/edit-shipping/edit-shipping.page').then( m => m.EditShippingPage)
+  },
 ];

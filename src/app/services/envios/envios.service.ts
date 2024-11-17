@@ -59,9 +59,13 @@ export class EnvioService {
         photoURL: photoURL,
         createdAt: new Date(),
         userId: user.uid,
+        envioId: '',
       };
 
-      await addDoc(collection(this.firestore, 'envios'), envioData);
+      const docRef = await addDoc(collection(this.firestore, 'envios'), envioData);
+      await updateDoc(docRef, {
+        envioId: docRef.id,  // Aquí se guarda el envioId en el documento
+      });
       console.log('Envío creado exitosamente!');
     } catch (error) {
       console.error('Error al crear el envío:', error);
